@@ -10,12 +10,14 @@ function CreateUserGroup({ userId, token }) {
   const [name, setName] = useState("");
   const [userGroups, setUserGroups] = useState([]);
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   // useEffect para obtener los grupos que administra el usuario al cargar el componente
   useEffect(() => {
     const fetchUserGroups = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/usergroups/admin/${userId}`,
+          `${apiUrl}/api/usergroups/admin/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -37,7 +39,7 @@ function CreateUserGroup({ userId, token }) {
     };
 
     fetchUserGroups();
-  }, [userId, token]);
+  }, [apiUrl, userId, token]);
 
   // Envío del formulario para crear un nuevo grupo.
   const handleSubmit = async (event) => {
@@ -45,7 +47,7 @@ function CreateUserGroup({ userId, token }) {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/usergroups/create",
+        `${apiUrl}/api/usergroups/create`,
         { name, adminId: userId },
         {
           headers: {

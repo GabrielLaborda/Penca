@@ -8,6 +8,8 @@ import "./LoginForm.css";
 const LoginForm = () => {
   const navigate = useNavigate();
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   // Función para manejar el envío del formulario.
 
   const onSubmit = async (values) => {
@@ -20,10 +22,7 @@ const LoginForm = () => {
     }
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/users/login",
-        values
-      );
+      const response = await axios.post(`${apiUrl}/api/users/login`, values);
       const token = response.data.token;
       localStorage.setItem("token", token);
 

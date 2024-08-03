@@ -17,6 +17,8 @@ const Ranking = ({ token, groups }) => {
   const [modalShow, setModalShow] = useState(false);
   const [totalPoints, setTotalPoints] = useState(0);
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   // useEffect para establecer el grupo inicial cuando se carga el componente.
 
   useEffect(() => {
@@ -33,15 +35,12 @@ const Ranking = ({ token, groups }) => {
     async (groupId) => {
       setLoading(true);
       try {
-        const response = await axios.get(
-          "http://localhost:5000/api/prediction/ranking",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-            params: { groupId },
-          }
-        );
+        const response = await axios.get(`${apiUrl}/api/prediction/ranking`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: { groupId },
+        });
         const allData = response.data;
 
         // Filtrar usuarios que pertenecen al grupo seleccionado
@@ -60,7 +59,7 @@ const Ranking = ({ token, groups }) => {
         setLoading(false);
       }
     },
-    [token, groups]
+    [apiUrl, token, groups]
   );
 
   // Efecto para cargar el ranking cuando cambia el grupo seleccionado.
@@ -90,10 +89,9 @@ const Ranking = ({ token, groups }) => {
 
   const fetchUserPredictions = async (userId, groupId) => {
     try {
-      const response = await axios.get(
-        `http://localhost:5000/api/prediction/${userId}`,
-        { params: { groupId } }
-      );
+      const response = await axios.get(`${apiUrl}/api/prediction/${userId}`, {
+        params: { groupId },
+      });
       const predictions = response.data;
 
       const now = new Date();

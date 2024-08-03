@@ -8,6 +8,8 @@ const LoadMatchesForm = () => {
   const [stadiums, setStadiums] = useState([]);
   const [token, setToken] = useState("");
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   // useEffect para cargar el token y obtener equipos y estadios al montar el componente.
 
   useEffect(() => {
@@ -21,8 +23,8 @@ const LoadMatchesForm = () => {
     const fetchData = async () => {
       try {
         const [teamsResponse, stadiumsResponse] = await Promise.all([
-          axios.get("http://localhost:5000/api/teams"),
-          axios.get("http://localhost:5000/api/stadiums"),
+          axios.get(`${apiUrl}/api/teams`),
+          axios.get(`${apiUrl}/api/stadiums`),
         ]);
         setTeams(teamsResponse.data);
         setStadiums(stadiumsResponse.data);
@@ -31,7 +33,7 @@ const LoadMatchesForm = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [apiUrl]);
 
   // Función para manejar el envío del formulario.
 
@@ -46,15 +48,11 @@ const LoadMatchesForm = () => {
         date: formattedDate,
       };
 
-      const response = await axios.post(
-        "http://localhost:5000/api/matches",
-        matchData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.post(`${apiUrl}/api/matches`, matchData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       console.log("Partido cargado:", response.data);
       form.reset();
     } catch (error) {

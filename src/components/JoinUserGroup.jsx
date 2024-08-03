@@ -7,12 +7,14 @@ import "react-toastify/dist/ReactToastify.css";
 function JoinUserGroup({ userId, token }) {
   const [code, setCode] = useState("");
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   // Función para manejar el envío del formulario solicitud POST para unirse a un grupo.
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/usergroups/join",
+        ` ${apiUrl}/api/usergroups/join`,
         { userId, code },
         {
           headers: {

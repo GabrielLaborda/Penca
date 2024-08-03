@@ -12,19 +12,18 @@ const FinishedGames = ({ token, userId }) => {
   const [groups, setGroups] = useState([]);
   const [selectedGroup, setSelectedGroup] = useState("");
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   // useEffect para obtener los grupos de usuario al cargar el componente.
 
   useEffect(() => {
     const fetchGroups = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:5000/api/usergroups/${userId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get(`${apiUrl}/api/usergroups/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setGroups(response.data);
         setSelectedGroup(response.data.length > 0 ? response.data[0]._id : ""); // Set default group
       } catch (err) {
@@ -33,7 +32,7 @@ const FinishedGames = ({ token, userId }) => {
     };
 
     fetchGroups();
-  }, [token, userId]);
+  }, [apiUrl, token, userId]);
 
   // useEffect para obtener los resultados de los partidos cuando se selecciona un grupo.
 
@@ -43,7 +42,7 @@ const FinishedGames = ({ token, userId }) => {
     const fetchResults = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/prediction/results/${userId}?groupId=${selectedGroup}`,
+          `${apiUrl}/api/prediction/results/${userId}?groupId=${selectedGroup}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -60,7 +59,7 @@ const FinishedGames = ({ token, userId }) => {
     };
 
     fetchResults();
-  }, [token, userId, selectedGroup]);
+  }, [apiUrl, token, userId, selectedGroup]);
 
   // Calcular el total de puntos obtenidos.
 

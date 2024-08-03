@@ -20,6 +20,8 @@ const Home = () => {
   const [groups, setGroups] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   // useEffect para obtener el token y userId del localStorage al cargar el componente.
 
   useEffect(() => {
@@ -38,7 +40,7 @@ const Home = () => {
       const fetchGroups = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:5000/api/usergroups/${userId}`,
+            `${apiUrl}/api/usergroups/${userId}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -54,7 +56,7 @@ const Home = () => {
       };
       fetchGroups();
     }
-  }, [token, userId]);
+  }, [apiUrl, token, userId]);
 
   if (!token || !userId || loading) {
     return <div>Loading...</div>;

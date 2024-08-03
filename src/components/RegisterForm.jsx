@@ -8,6 +8,8 @@ import "react-toastify/dist/ReactToastify.css";
 const RegisterForm = () => {
   const navigate = useNavigate();
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   // Función de validación para los campos del formulario.
 
   const validate = (values) => {
@@ -40,10 +42,7 @@ const RegisterForm = () => {
     }
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/users",
-        values
-      );
+      const response = await axios.post(`${apiUrl}/api/users`, values);
       console.log(response.data);
 
       toast.success("Registro exitoso"), { autoClose: 3000 };

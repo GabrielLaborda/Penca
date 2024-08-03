@@ -9,12 +9,14 @@ import "./UpdateMatchResultForm.css";
 const UpdateMatchResultForm = ({ match, token, fetchMatches }) => {
   const [teams, setTeams] = useState({});
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   // useEffect llamada a la API para traer la informacion de los equipos.
 
   useEffect(() => {
     const fetchTeams = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/teams");
+        const response = await axios.get(`${apiUrl}/api/teams`);
         const teamsData = response.data.reduce((acc, team) => {
           acc[team.name] = team.flagUrl;
           return acc;
@@ -25,14 +27,14 @@ const UpdateMatchResultForm = ({ match, token, fetchMatches }) => {
       }
     };
     fetchTeams();
-  }, []);
+  }, [apiUrl]);
 
   // Manejo del envío del formulario.
 
   const onSubmit = async (values) => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/matches/${match._id}`,
+        `${apiUrl}/api/matches/${match._id}`,
         values,
         {
           headers: {

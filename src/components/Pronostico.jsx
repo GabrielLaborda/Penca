@@ -23,11 +23,13 @@ function Pronostico({ token, userId }) {
   const [currentMatchId, setCurrentMatchId] = useState(null);
   const [currentPredictionValues, setCurrentPredictionValues] = useState({});
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   // Cargar equipos al montar el componente.
   useEffect(() => {
     const fetchTeams = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/teams");
+        const response = await axios.get(`${apiUrl}/api/teams`);
         const teamsData = response.data.reduce((acc, team) => {
           acc[team.name] = team.flagUrl;
           return acc;
@@ -38,25 +40,25 @@ function Pronostico({ token, userId }) {
       }
     };
     fetchTeams();
-  }, []);
+  }, [apiUrl]);
 
   // Cargar estadios al montar el componente.
   useEffect(() => {
     const fetchStadiums = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/stadiums");
+        const response = await axios.get(`${apiUrl}/api/stadiums`);
         setStadiums(response.data);
       } catch (error) {
         console.error("Error fetching the stadium data", error);
       }
     };
     fetchStadiums();
-  }, []);
+  }, [apiUrl]);
 
   // Cargar partidos.
   const fetchMatches = useCallback(async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/matches");
+      const response = await axios.get(`${apiUrl}/api/matches`);
       const now = new Date();
       const upcomingMatches = response.data.filter(
         (match) => new Date(match.matchDate) > now
@@ -65,19 +67,16 @@ function Pronostico({ token, userId }) {
     } catch (error) {
       console.error("Error fetching matches:", error);
     }
-  }, []);
+  }, [apiUrl]);
 
   // Cargar pronósticos del usuario.
   const fetchPredictions = useCallback(async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:5000/api/prediction/${userId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.get(`${apiUrl}/api/prediction/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setPredictions(response.data);
     } catch (error) {
       console.error(
@@ -85,7 +84,7 @@ function Pronostico({ token, userId }) {
         error.response?.data?.message
       );
     }
-  }, [userId, token]);
+  }, [apiUrl, userId, token]);
 
   // Llamar a las funciones de carga de partidos y pronósticos al montar el componente.
   useEffect(() => {
@@ -99,14 +98,11 @@ function Pronostico({ token, userId }) {
   useEffect(() => {
     const fetchGroups = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:5000/api/usergroups/${userId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get(`${apiUrl}/api/usergroups/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setGroups(response.data);
 
         // Mostrar por defecto los pronosticos del grupo General.
@@ -123,7 +119,7 @@ function Pronostico({ token, userId }) {
       }
     };
     fetchGroups();
-  }, [userId, token]);
+  }, [apiUrl, userId, token]);
 
   // Manejar la acción de guardar pronóstico.
   const handleSave = (values, matchId) => {
@@ -150,15 +146,11 @@ function Pronostico({ token, userId }) {
       groupId: applyToAllGroups ? null : selectedGroup,
     };
     try {
-      const response = await axios.put(
-        "http://localhost:5000/api/prediction/save",
-        data,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.put(`${apiUrl}/api/prediction/save`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       toast.success(
         `Pronóstico guardado${applyToAllGroups ? " para todos los grupos" : ""}`
       );

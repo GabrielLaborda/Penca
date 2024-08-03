@@ -7,6 +7,8 @@ const Admin = () => {
   const [matches, setMatches] = useState([]);
   const [token, setToken] = useState("");
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   // useEffect para recuperar el token del localStorage al cargar el componente.
 
   useEffect(() => {
@@ -20,7 +22,7 @@ const Admin = () => {
 
   const fetchMatches = useCallback(async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/matches", {
+      const response = await axios.get(`${apiUrl}/api/matches`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -29,7 +31,7 @@ const Admin = () => {
     } catch (error) {
       console.error("Error obteniendo partidos:", error.response.data.message);
     }
-  }, [token]);
+  }, [apiUrl, token]);
 
   useEffect(() => {
     if (token) {
