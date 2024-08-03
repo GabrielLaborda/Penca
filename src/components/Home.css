@@ -1,0 +1,25 @@
+.tabs {
+  background-color: var(--paleGreen);
+  padding: 10px 0;
+  border: none;
+}
+.custom-tabs .nav-link {
+  color: var(--darkGray);
+  font-weight: 500;
+  border-radius: 10px;
+  border: 1px solid var(--paleGreen);
+  background-color: var(--lightGray);
+}
+
+.custom-tabs .nav-link:hover {
+  background-color: var(--brickRed);
+  color: var(--paleGreen);
+}
+
+.custom-tabs .nav-link.active {
+  color: var(--paleGreen);
+  background-color: var(--brickRed);
+  font-weight: 500;
+  border-radius: 10px;
+  border-bottom: none;
+}

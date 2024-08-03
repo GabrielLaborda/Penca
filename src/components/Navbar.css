@@ -1,0 +1,49 @@
+.navBarLogo {
+  width: 200px;
+  height: 180px;
+  border-radius: 50%;
+}
+.navBar {
+  background-color: var(--paleGreen);
+  padding-top: 30px;
+  position: relative;
+}
+.navBarUser {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--darkGray);
+  padding: 10px;
+}
+
+.navBarUser span {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.navBarUser button {
+  margin-left: 10px;
+}
+
+.container-btnLogout {
+  background-color: var(--paleGreen);
+  display: flex;
+  justify-content: end;
+}
+
+.btn-logout {
+  background-color: var(--darkGray);
+  color: var(--paleGreen);
+  font-weight: bold;
+  font-size: 12px;
+  margin-top: 8px;
+  margin-right: 5px;
+  position: absolute;
+  top: 5px;
+  right: 0;
+}
+
+.btn-logout:hover {
+  background-color: var(--darkGray);
+  color: var(--brickRed);
+}

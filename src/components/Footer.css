@@ -1,0 +1,10 @@
+.footer {
+  background-color: var(--paleGreen);
+  color: var(--darkGray);
+  font-weight: 500;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

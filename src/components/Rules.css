@@ -1,0 +1,33 @@
+.rules {
+  padding: 10px 20px 10px 20px;
+  background-color: var(--paleGreen);
+  color: var(--darkGray);
+}
+
+.rules-title {
+  cursor: pointer;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+}
+
+.rules-content {
+  margin-top: 10px;
+}
+
+.rules-content p {
+  margin-bottom: 10px;
+  text-align: start;
+  font-size: 0.9em;
+}
+
+.rules-content h6 {
+  font-weight: bold;
+  margin: 20px 0px 15px 0px;
+}
+
+@media (max-width: 768px) {
+  .rules-content h6 {
+    text-align: center;
+  }
+}

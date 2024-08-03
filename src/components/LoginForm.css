@@ -1,0 +1,7 @@
+.link-login {
+  color: var(--brickRed);
+  font-weight: 500;
+}
+.link-login:hover {
+  color: var(--lightGray);
+}

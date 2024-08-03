@@ -1,0 +1,41 @@
+.title {
+  color: var(--lightGray);
+  text-align: center;
+  font-size: 30px;
+}
+
+.table {
+  background-color: var(--lightGray);
+  margin-bottom: 50px;
+}
+
+.table th {
+  background-color: var(--brickRed);
+  color: var(--lightGray);
+  border-color: var(--darkGray);
+  vertical-align: middle;
+}
+
+.table td {
+  border-color: var(--darkGray);
+  font-weight: 500;
+  vertical-align: middle;
+}
+.total-points {
+  background-color: var(--brickRed);
+  color: var(--lightGray);
+  padding: 9px;
+  margin-top: 30px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 10px;
+  margin-bottom: 50px;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+.modal-table {
+  border: var(--darkGray);
+  font-size: 11px;
+}

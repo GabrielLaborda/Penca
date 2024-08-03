@@ -1,0 +1,36 @@
+.btn-user-groups {
+  background-color: var(--brickRed);
+  color: var(--lightGray);
+  width: 140px;
+  font-weight: 500;
+  margin-left: 10px;
+
+  border: 0;
+}
+.input-user-groups {
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+}
+.container-user-groups {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+}
+.create-groups-title {
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 0%;
+}
+
+.container-table {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  width: 25%;
+}
+@media (max-width: 600px) {
+  .container-table {
+    width: 80%;
+  }
+}

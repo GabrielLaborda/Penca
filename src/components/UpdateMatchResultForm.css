@@ -1,0 +1,66 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #044a94;
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  width: 400px;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.stadium {
+  text-align: center;
+  margin-bottom: 0px;
+  font-weight: 500;
+}
+.team-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  height: 80px;
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+}
+
+.team-name {
+  min-width: 60px;
+  text-align: center;
+}
+
+.team-score {
+  width: 50px;
+  height: 45px;
+  text-align: center;
+  margin: 0 10px;
+}
+
+.team-flag {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.update-button {
+  background-color: var(--brickRed);
+  color: var(--lightGray);
+  align-self: center;
+  padding: 10px 20px;
+}
+
+.vs-text {
+  margin: 0 5px;
+}
