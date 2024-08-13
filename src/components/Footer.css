@@ -2,7 +2,7 @@
   background-color: var(--paleGreen);
   color: var(--darkGray);
   font-weight: 500;
-  height: 150px;
+  min-height: 320px;
   display: flex;
   flex-direction: column;
   justify-content: center;

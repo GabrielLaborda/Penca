@@ -337,7 +337,7 @@ function Pronostico({ token, userId }) {
           <Button variant="primary" onClick={handleConfirmSave}>
             Confirmar
           </Button>
-          <Button variant="secondary" onClick={() => setShowModal(false)}>
+          <Button className="btn-cancel" onClick={() => setShowModal(false)}>
             Cancelar
           </Button>
         </Modal.Footer>
